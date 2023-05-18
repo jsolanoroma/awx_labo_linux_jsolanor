@@ -13,6 +13,7 @@
         service:
           name: httpd
           state: started
-  # - name: mostrar mensaje
-  #   debug:
-  #     msg: "la tarea anterior ha ido bien!!!"
+    always:
+      - name: mostrar mensaje
+        debug:
+          msg: "la tarea anterior ha ido bien!!!"
