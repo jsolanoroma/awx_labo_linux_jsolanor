@@ -1,0 +1,25 @@
+---
+- hosts: linux07
+  become: true
+  tasks:
+  - name: instalamos apache
+    package:
+      name: httpd
+      state: present
+  - name: levantamos servicio y lo dejamos persistente
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: creamos pagina de bienvenida
+    copy:
+      dest: /var/www/html/index.html
+      content: |
+        <html>
+        <body>
+        <h1>It works!</h1>
+        Que bonito!
+        Que Bonito!
+        que b0nito!
+        </body>
+        </html>
