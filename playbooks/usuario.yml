@@ -7,8 +7,8 @@
       var: usuario
   - name: crear usuario
     user:
-      name: "{{ item.empleado }}"
-      groups: "{{ item.grupo }}"
+      name: "{{ empleado }}"
+      groups: "{{ grupo }}"
       shell: "/bin/bash"
       comment: "usuario creado por ansible"
       state: present
@@ -16,7 +16,7 @@
   - name: mostrar contenido de output
     debug:
       var: output   # output.group para ver solo un valor del diccionario
-    with_items: "{{ usuarios }}"
+ #   with_items: "{{ usuarios }}"
 #    when: is usuario | bool # en el linux07.yml se debe crear la variable is_usuario: false
 
 
