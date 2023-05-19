@@ -1,0 +1,24 @@
+---
+- hosts: "{{ servidores }}"
+  gather_facts: false
+  become: true
+  tasks:
+  - name: mostrar contenido de variable usuario
+    debug:
+      var: usuario
+  - name: crear usuario
+    user:
+      name: "{{ usuario }}"
+      groups: "{{ grupo }}"
+      shell: "/bin/bash"
+      comment: "usuario creado"
+      state: present
+    register: output
+  - name: mostrar contenido de output
+    debug:
+      var: output.group, output.home
+      # msg:
+      # - "{{ output.group }}"
+      # - "{{ output.home }}"
+    # with_items: "{{ usuarios }}"
+    # when: is_usuario | bool

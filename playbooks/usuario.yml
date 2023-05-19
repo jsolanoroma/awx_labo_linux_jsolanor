@@ -2,6 +2,9 @@
 - hosts: "{{ servidores }}"
   become: true
   tasks:
+  - name: mostrar contenido variavle usuario
+    debug:
+      var: usuario
   - name: crear usuario
     user:
       name: "{{ item.empleado }}"
@@ -9,5 +12,11 @@
       shell: "/bin/bash"
       comment: "usuario creado por ansible"
       state: present
+    register: output
+  - name: mostrar contenido de output
+    debug:
+      var: output   # output.group para ver solo un valor del diccionario
     with_items: "{{ usuarios }}"
+#    when: is usuario | bool # en el linux07.yml se debe crear la variable is_usuario: false
+
 
